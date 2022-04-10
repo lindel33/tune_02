@@ -6,7 +6,7 @@ from django.views.generic import ListView
 
 def get_csv_products():
     csv_list = []
-    with open('/home/TuneApple/tune/cost_models/store.csv', 'r', encoding='utf-8') as f:
+    with open('/tune/cost_models/store.csv', 'r', encoding='utf-8') as f:
         data = csv.DictReader(f, delimiter=';')
         for row in data:
             if row['Editions']:
@@ -29,7 +29,7 @@ def index(request):
 
 def not_update(request):
     csv_list = []
-    with open('/home/TuneApple/tune/cost_models/store.csv', 'r', encoding='utf-8') as f:
+    with open('/tune/cost_models/store.csv', 'r', encoding='utf-8') as f:
         data = csv.DictReader(f, delimiter=';')
         for row in data:
             if row['Editions']:
@@ -41,7 +41,7 @@ def not_update(request):
 
 def ready(request):
     csv_list = []
-    with open('/home/TuneApple/tune/cost_models/store.csv', 'r', encoding='utf-8') as f:
+    with open('/tune/cost_models/store.csv', 'r', encoding='utf-8') as f:
         data = csv.DictReader(f, delimiter=';')
         for row in data:
             if row['Editions']:
