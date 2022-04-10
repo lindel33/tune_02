@@ -1,6 +1,6 @@
 # import re
 # from pprint import pprint
-# from django.db import models
+from django.db import models
 # from price.models import Global, Iphone, Markup, Ipad
 # from .service import get_product_list
 # from .startsvc import get_cvs_data, new_cvs_data
@@ -8,51 +8,51 @@
 # mega_count = []
 
 
-# class ProviderModel(models.Model):
-#     name = models.CharField('Имя', max_length=20)
+class ProviderModel(models.Model):
+    name = models.CharField('Имя', max_length=20)
 
-#     class Meta:
-#         verbose_name = 'Поставщик'
-#         verbose_name_plural = 'Поставщик'
+    class Meta:
+        verbose_name = 'Поставщик'
+        verbose_name_plural = 'Поставщик'
 
-#     def __str__(self):
-#         return self.name
-
-
-# class DetailModel(models.Model):
-#     device = models.CharField('Устройство', max_length=30)
-#     series = models.CharField('Серия', max_length=30)
-#     memory = models.CharField('Память', max_length=30)
-#     cost = models.CharField('Цена', max_length=30)
-#     color = models.CharField('Цвет', max_length=30)
-#     region = models.CharField('Регион', max_length=30)
-#     extra = models.CharField('Исходная строка', max_length=255)
-#     new_line = models.CharField('Строка состояния', max_length=255)
-#     provider = models.CharField('Поставщик', max_length=25)
-#     date_created = models.DateField(auto_now_add=True)
-
-#     class Meta:
-#         verbose_name = 'Цены | Поиск'
-#         verbose_name_plural = 'Цены | Поиск'
-
-#     def __str__(self):
-#         return self.device
+    def __str__(self):
+        return self.name
 
 
-# class NewPriceModel(models.Model):
-#     provider = models.ForeignKey(ProviderModel, on_delete=models.CASCADE, related_name='Поставщик')
-#     price = models.TextField('Новый прайс')
+class DetailModel(models.Model):
+    device = models.CharField('Устройство', max_length=30)
+    series = models.CharField('Серия', max_length=30)
+    memory = models.CharField('Память', max_length=30)
+    cost = models.CharField('Цена', max_length=30)
+    color = models.CharField('Цвет', max_length=30)
+    region = models.CharField('Регион', max_length=30)
+    extra = models.CharField('Исходная строка', max_length=255)
+    new_line = models.CharField('Строка состояния', max_length=255)
+    provider = models.CharField('Поставщик', max_length=25)
+    date_created = models.DateField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Цены | Поиск'
+        verbose_name_plural = 'Цены | Поиск'
+
+    def __str__(self):
+        return self.device
+
+
+class NewPriceModel(models.Model):
+    provider = models.ForeignKey(ProviderModel, on_delete=models.CASCADE, related_name='Поставщик')
+    price = models.TextField('Новый прайс')
 #     csv_file = get_cvs_data()
 #     csv_file_copy = csv_file.copy()
 #     id_products = []
 #     new_products = []
 
-#     class Meta:
-#         verbose_name = 'Новый прайс | Управление cvs файлом'
-#         verbose_name_plural = 'Новый прайс | Управление cvs файлом'
+    class Meta:
+        verbose_name = 'Новый прайс | Управление cvs файлом'
+        verbose_name_plural = 'Новый прайс | Управление cvs файлом'
 
-#     def __str__(self):
-#         return self.provider.name
+    def __str__(self):
+        return self.provider.name
 
 #     def save(self, *args, **kwargs):
 #         list_new_products = get_product_list(self.price)
