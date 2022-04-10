@@ -73,14 +73,13 @@ WSGI_APPLICATION = 'tune.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'TuneApple$TuneProd',
-        'USER': 'TuneApple',
-        'PASSWORD': 'I1QEvAR503',
-        'HOST': 'TuneApple.mysql.pythonanywhere-services.com',
+        'NAME': 'Tune@localhost',
+        'USER': 'Tune',
+        'PASSWORD': 'I1QEvAR503!',
         'OPTIONS': {'charset': 'utf8mb4', },
         }
     }
-
+#         'HOST': 'TuneApple.mysql.pythonanywhere-services.com',
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
