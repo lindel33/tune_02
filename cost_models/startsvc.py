@@ -76,7 +76,7 @@ def get_cvs_data1():
     return iphone_list
 
 
-def new_cvs_data(new_dict: list[dict]):
+def new_cvs_data(new_dict):
     list_cvs = get_cvs_data1()
     c = 0
     z = 0
