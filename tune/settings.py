@@ -15,7 +15,7 @@ SECRET_KEY = 'ljw@!#$uwio5u43u45u35u@#q4utiuopi34io5uodas231123@!#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://tuneapple.xyz/', '127.0.0.1']
+ALLOWED_HOSTS = ['https://tuneapple.xyz/', '127.0.0.1', 'https://tuneapple.xyz/panel/homelogin/?next=/panel/home']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
@@ -174,7 +174,8 @@ CORS_ALLOWED_ORIGINS  = [
     "http://tuneapple.xyz" ,
     "http://www.tuneapple.xyz" ,
     "https://www.tuneapple.xyz" , 
-    "https://www.tuneapple.xyz" , 
+    "https://www.tuneapple.xyz" ,
+    'https://tuneapple.xyz/panel/homelogin/?next=/panel/home',
 ] 
 CSRF_TRUSTED_ORIGINS = [
      "http://tuneapple.xyz" , 
@@ -187,5 +188,6 @@ CSRF_TRUSTED_ORIGINS = [
     '127.0.0.1:8001',
     'https://127.0.0.1:8000',
     'https://127.0.0.1:8001',
+    'https://tuneapple.xyz/panel/homelogin/?next=/panel/home',
    
 ]
