@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'tune.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'TuneApple@TuneProd',
+        'NAME': 'TuneApple$TuneProd',
         'USER': 'TuneApple',
         'PASSWORD': 'tune',
         'OPTIONS': {'charset': 'utf8mb4', },
