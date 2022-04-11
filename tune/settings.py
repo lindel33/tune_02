@@ -15,8 +15,8 @@ SECRET_KEY = 'ljw@!#$uwio5u43u45u35u@#q4utiuopi34io5uodas231123@!#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://tuneapple.xyz/']
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS = ['https://tuneasaddasdsapple.xyz/']
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'price',
     'provider',
     'cost_models',
-    'corsheaders',
+#     'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -139,53 +139,53 @@ CACHES = {
 
 
 
-CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
-                        'https://tuneapple.xyz/',
-                        'https://www.tuneapple.xyz',
-                        'https://www.tuneapple.xyz/',
-                        'tuneapple.xyz'
-                       ]
-CORS_ALLOWED_ORIGIN_REGEXES  = [
-     r"^https://\w+\.tuneapple\.xyz$" , 
-]
+# CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
+#                         'https://tuneapple.xyz/',
+#                         'https://www.tuneapple.xyz',
+#                         'https://www.tuneapple.xyz/',
+#                         'tuneapple.xyz'
+#                        ]
+# CORS_ALLOWED_ORIGIN_REGEXES  = [
+#      r"^https://\w+\.tuneapple\.xyz$" , 
+# ]
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
+# CORS_ALLOW_HEADERS = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+# ]
 
-CORS_ALLOWED_ORIGINS  = [
-    "http://tuneapple.xyz" ,
-    "http://www.tuneapple.xyz" ,
-    "https://www.tuneapple.xyz" , 
-    "https://www.tuneapple.xyz" , 
-] 
-CSRF_TRUSTED_ORIGINS = [
-     "http://tuneapple.xyz" , 
-     "https://tuneapple.xyz" ,
-    "http://tuneapple.xyz/" , 
-     "https://tuneapple.xyz/" , 
-     "http://www.tuneapple.xyz" , 
-     "https://www.tuneapple.xyz" , 
-    '127.0.0.1:8000',
-    '127.0.0.1:8001',
-    'https://127.0.0.1:8000',
-    'https://127.0.0.1:8001',
+# CORS_ALLOWED_ORIGINS  = [
+#     "http://tuneapple.xyz" ,
+#     "http://www.tuneapple.xyz" ,
+#     "https://www.tuneapple.xyz" , 
+#     "https://www.tuneapple.xyz" , 
+# ] 
+# CSRF_TRUSTED_ORIGINS = [
+#      "http://tuneapple.xyz" , 
+#      "https://tuneapple.xyz" ,
+#     "http://tuneapple.xyz/" , 
+#      "https://tuneapple.xyz/" , 
+#      "http://www.tuneapple.xyz" , 
+#      "https://www.tuneapple.xyz" , 
+#     '127.0.0.1:8000',
+#     '127.0.0.1:8001',
+#     'https://127.0.0.1:8000',
+#     'https://127.0.0.1:8001',
    
-]
+# ]
