@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-nh=pmu+fveuk8xr(ite%s9*&igjy$6lr&k(#6*r%c!w&ny1u20
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['51.250.106.80', '*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -132,7 +132,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/"]
-
+SRF_TRUSTED_ORIGINS = ["tuneapple.xyz", "www.tuneapple.xyz"]
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
