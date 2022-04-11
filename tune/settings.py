@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     "corsheaders.middleware.CorsPostCsrfMiddleware" ,
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -135,6 +135,10 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'TuneApple_cache')
     }
 }
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
                         'https://tuneapple.xyz/',
                         'https://www.tuneapple.xyz',
