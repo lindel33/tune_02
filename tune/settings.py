@@ -16,7 +16,7 @@ SECRET_KEY = 'ljw@!#$uwio5u43u45u35u@#q4utiuopi34io5uodas231123@!#'
 DEBUG = True
 
 ALLOWED_HOSTS = ['https://tuneasaddasdsapple.xyz/']
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
@@ -139,43 +139,43 @@ CACHES = {
 
 
 
-# CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
-#                         'https://tuneapple.xyz/',
-#                         'https://www.tuneapple.xyz',
-#                         'https://www.tuneapple.xyz/',
-#                         'tuneapple.xyz'
-#                        ]
-# CORS_ALLOWED_ORIGIN_REGEXES  = [
-#      r"^https://\w+\.tuneapple\.xyz$" , 
-# ]
+CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
+                        'https://tuneapple.xyz/',
+                        'https://www.tuneapple.xyz',
+                        'https://www.tuneapple.xyz/',
+                        'tuneapple.xyz'
+                       ]
+CORS_ALLOWED_ORIGIN_REGEXES  = [
+     r"^https://\w+\.tuneapple\.xyz$" , 
+]
 
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOW_METHODS = [
-#     "DELETE",
-#     "GET",
-#     "OPTIONS",
-#     "PATCH",
-#     "POST",
-#     "PUT",
-# ]
-# CORS_ALLOW_HEADERS = [
-#     "accept",
-#     "accept-encoding",
-#     "authorization",
-#     "content-type",
-#     "dnt",
-#     "origin",
-#     "user-agent",
-#     "x-csrftoken",
-#     "x-requested-with",
-# ]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
-# CORS_ALLOWED_ORIGINS  = [
-#     "http://tuneapple.xyz" ,
-#     "http://www.tuneapple.xyz" ,
-#     "https://www.tuneapple.xyz" , 
-#     "https://www.tuneapple.xyz" , 
-# ] 
+CORS_ALLOWED_ORIGINS  = [
+    "http://tuneapple.xyz" ,
+    "http://www.tuneapple.xyz" ,
+    "https://www.tuneapple.xyz" , 
+    "https://www.tuneapple.xyz" , 
+] 
 CSRF_TRUSTED_ORIGINS = [
      "http://tuneapple.xyz" , 
      "https://tuneapple.xyz" ,
