@@ -131,7 +131,11 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/"]
+# SRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/"]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
