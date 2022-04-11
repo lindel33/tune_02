@@ -7,7 +7,6 @@ from django.views.decorators.cache import cache_page
 
 
 urlpatterns = [
-    path('/', admin.site.urls),
-    path('api', cache_page(100)(bot))
+    path('/v1', cache_page(100)(bot))
 
 ]
