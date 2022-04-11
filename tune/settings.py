@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-nh=pmu+fveuk8xr(ite%s9*&igjy$6lr&k(#6*r%c!w&ny1u20'
+SECRET_KEY = 'ljw@!#$uwio5u43u45u35u@#q4utiuopi34io5uodas231123@!#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -122,23 +122,35 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 3000
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/apple/code/project1/tune/static'
+STATIC_ROOT = '/home/apple/code/project1/tune/static/'
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    '/home/apple/code/project1/tune/static',
-    '/home/apple/code/project1/env/lib/python3.8/site-packages/django/contrib/admin/static',
-]
+#CSRF_COOKIE_SECURE = False
+#SESSION_COOKIE_SECURE = False
+#STATICFILES_DIRS = [
+#    '/home/apple/code/project1/tune/static/',
+#    '/home/apple/code/project1/env/lib/python3.8/site-packages/django/contrib/admin/static/',
+#]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# SRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/"]
-SRF_TRUSTED_ORIGINS = ["tuneapple.xyz", "www.tuneapple.xyz"]
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-USE_X_FORWARDED_HOST = True
-USE_X_FORWARDED_PORT = True
+#SRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/"]
+#CSRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/", "http://tuneapple.xyz/"]
+#CORS_ORIGIN_ALLOW_ALL = True
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#USE_X_FORWARDED_HOST = True
+#USE_X_FORWARDED_PORT = True
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'LOCATION': os.path.join(BASE_DIR, 'TuneApple_cache')
     }
 }
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_TRUSTED_ORIGINS = ['https://tuneapple.xyz']
+CORS_REPLACE_HTTPS_REFERER = True
+CSRF_COOKIE_DOMAIN = 'tuneapple.xyz'
+CORS_ORIGIN_WHITELIST = {
+        'https://tuneaplle.xyz/',
+        'www.tuneapple.xyz',
+        'tuneapple.xyz',
+        }
