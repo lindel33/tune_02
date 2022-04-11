@@ -33,9 +33,11 @@ INSTALLED_APPS = [
     'price',
     'provider',
     'cost_models',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    '**corsheaders.middleware.CorsMiddleware**',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,8 +151,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_TRUSTED_ORIGINS = ['https://tuneapple.xyz']
 CORS_REPLACE_HTTPS_REFERER = True
 CSRF_COOKIE_DOMAIN = 'tuneapple.xyz'
-CORS_ORIGIN_WHITELIST = {
+CORS_ORIGIN_WHITELIST = [
         'https://tuneaplle.xyz/',
         'www.tuneapple.xyz',
         'tuneapple.xyz',
-        }
+]
