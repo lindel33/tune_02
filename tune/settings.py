@@ -178,7 +178,9 @@ CACHES = {
 # ] 
 CSRF_TRUSTED_ORIGINS = [
      "http://tuneapple.xyz" , 
-     "https://tuneapple.xyz" , 
+     "https://tuneapple.xyz" ,
+    "http://tuneapple.xyz/" , 
+     "https://tuneapple.xyz/" , 
      "http://www.tuneapple.xyz" , 
      "https://www.tuneapple.xyz" , 
     '127.0.0.1:8000',
