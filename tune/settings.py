@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+SRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/"]
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
