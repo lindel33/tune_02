@@ -71,23 +71,22 @@ WSGI_APPLICATION = 'tune.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'Tune@localhost',
-#         'USER': 'Tune',
-#         'PASSWORD': 'I1QEvAR503!',
-#         'OPTIONS': {'charset': 'utf8mb4', },
-#         }
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
-#         'HOST': 'TuneApple.mysql.pythonanywhere-services.com',
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'TuneApple@TuneProd',
+        'USER': 'TuneApple',
+        'PASSWORD': 'tune',
+        'OPTIONS': {'charset': 'utf8mb4', },
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
