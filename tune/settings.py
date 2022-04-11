@@ -15,7 +15,7 @@ SECRET_KEY = 'ljw@!#$uwio5u43u45u35u@#q4utiuopi34io5uodas231123@!#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://tuneapple.xyz/']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
