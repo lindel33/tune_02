@@ -125,6 +125,10 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/apple/code/project1/tune/static'
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    '/home/apple/code/project1/tune/static',
+    '/home/apple/code/project1/env/lib/python3.8/site-packages/django/contrib/admin/static',
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
