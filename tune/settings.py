@@ -181,4 +181,8 @@ CSRF_TRUSTED_ORIGINS = [
      "https://tuneapple.xyz" , 
      "http://www.tuneapple.xyz" , 
      "https://www.tuneapple.xyz" , 
+    'null',
+    'None',
+    None
+    
 ]
