@@ -137,59 +137,48 @@ CACHES = {
 }
 
 
-
-
-CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
-                        'https://tuneapple.xyz/',
-                        'https://www.tuneapple.xyz',
-                        'https://www.tuneapple.xyz/',
-                        'tuneapple.xyz'
-                        'https://tuneapple.xyz/',
-                       ]
-CORS_ALLOWED_ORIGIN_REGEXES  = [
-     r"^https://\w+\.tuneapple\.xyz$" , 
-]
-
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
-
-CORS_ALLOWED_ORIGINS  = [
-    "http://tuneapple.xyz" ,
-    "http://www.tuneapple.xyz" ,
-    "https://www.tuneapple.xyz" , 
-    "https://www.tuneapple.xyz" ,
-    'https://tuneapple.xyz/panel/homelogin/?next=/panel/home',
-    'https://tuneapple.xyz/',
-] 
 CSRF_TRUSTED_ORIGINS = [
-     "http://tuneapple.xyz" , 
-     "https://tuneapple.xyz" ,
-    "http://tuneapple.xyz/" , 
-     "https://tuneapple.xyz/" , 
-     "http://www.tuneapple.xyz" , 
-     "https://www.tuneapple.xyz" , 
-    '127.0.0.1:8000',
-    '127.0.0.1:8001',
-    'https://127.0.0.1:8000',
-    'https://127.0.0.1:8001',
-    'https://tuneapple.xyz/panel/homelogin/?next=/panel/home',
-   
+    'https://tuneapple.xyz/'
 ]
+
+# CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
+#                         'https://tuneapple.xyz/',
+#                         'https://www.tuneapple.xyz',
+#                         'https://www.tuneapple.xyz/',
+#                         'tuneapple.xyz'
+#                         'https://tuneapple.xyz/',
+#                        ]
+# CORS_ALLOWED_ORIGIN_REGEXES  = [
+#      r"^https://\w+\.tuneapple\.xyz$" , 
+# ]
+
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
+# CORS_ALLOW_HEADERS = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+# ]
+
+# CORS_ALLOWED_ORIGINS  = [
+#     "http://tuneapple.xyz" ,
+#     "http://www.tuneapple.xyz" ,
+#     "https://www.tuneapple.xyz" , 
+#     "https://www.tuneapple.xyz" ,
+#     'https://tuneapple.xyz/panel/homelogin/?next=/panel/home',
+#     'https://tuneapple.xyz/',
+# ] 
+
