@@ -37,7 +37,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    '**corsheaders.middleware.CorsMiddleware**',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -126,33 +126,54 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/apple/code/project1/tune/static/'
 STATIC_URL = '/static/'
-#CSRF_COOKIE_SECURE = False
-#SESSION_COOKIE_SECURE = False
-#STATICFILES_DIRS = [
-#    '/home/apple/code/project1/tune/static/',
-#    '/home/apple/code/project1/env/lib/python3.8/site-packages/django/contrib/admin/static/',
-#]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#SRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/"]
-#CSRF_TRUSTED_ORIGINS = ["https://tuneapple.xyz/", "https://www.tuneapple.xyz/", "http://tuneapple.xyz/"]
-#CORS_ORIGIN_ALLOW_ALL = True
-#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#USE_X_FORWARDED_HOST = True
-#USE_X_FORWARDED_PORT = True
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'LOCATION': os.path.join(BASE_DIR, 'TuneApple_cache')
     }
 }
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_TRUSTED_ORIGINS = ['https://tuneapple.xyz']
-CORS_REPLACE_HTTPS_REFERER = True
-CSRF_COOKIE_DOMAIN = 'tuneapple.xyz'
-CORS_ORIGIN_WHITELIST = [
-        'https://tuneaplle.xyz/',
-        'www.tuneapple.xyz',
-        'tuneapple.xyz',
+CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
+                        'https://tuneapple.xyz/',
+                        'https://www.tuneapple.xyz',
+                        'https://www.tuneapple.xyz/',
+                        'tuneapple.xyz'
+                       ]
+CORS_ALLOWED_ORIGIN_REGEXES  = [
+     r"^https://\w+\.tuneapple\.xyz$" , 
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOWED_ORIGINS  = [
+    "http://tuneapple.xyz" ,
+    "http://www.tuneapple.xyz" ,
+    "https://www.tuneapple.xyz" , 
+    "https://www.tuneapple.xyz" , 
+] 
+CSRF_TRUSTED_ORIGINS = [
+     "http://tuneapple.xyz" , 
+     "https://tuneapple.xyz" , 
+     "http://www.tuneapple.xyz" , 
+     "https://www.tuneapple.xyz" , 
 ]
