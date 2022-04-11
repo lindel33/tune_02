@@ -8,6 +8,6 @@ from django.views.decorators.cache import cache_page
 
 urlpatterns = [
     path('', admin.site.urls),
-    path('/b', cache_page(100)(bot))
+    path('/api', cache_page(100)(bot))
 
 ]
