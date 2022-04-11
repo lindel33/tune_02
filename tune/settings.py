@@ -176,13 +176,23 @@ CACHES = {
 #     "https://www.tuneapple.xyz" , 
 #     "https://www.tuneapple.xyz" , 
 # ] 
-# CSRF_TRUSTED_ORIGINS = [
-#      "http://tuneapple.xyz" , 
-#      "https://tuneapple.xyz" , 
-#      "http://www.tuneapple.xyz" , 
-#      "https://www.tuneapple.xyz" , 
-#     'null',
-#     'None',
-#     None
-    
-# ]
+CSRF_TRUSTED_ORIGINS = [
+     "http://tuneapple.xyz" , 
+     "https://tuneapple.xyz" , 
+     "http://www.tuneapple.xyz" , 
+     "https://www.tuneapple.xyz" , 
+    '127.0.0.1:8000',
+    '127.0.0.1:8001',
+    'https://127.0.0.1:8000',
+    'https://127.0.0.1:8001',
+   
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+   'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+}
