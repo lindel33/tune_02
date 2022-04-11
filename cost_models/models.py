@@ -216,7 +216,7 @@ class NewPriceModel(models.Model):
             return new_series
         return 'Series not search'
 
-    def get_clear_list(self, products: list[dict]):
+    def get_clear_list(self, products):
         series = []
         series_cost = []
         for product in products:
@@ -241,7 +241,7 @@ class NewPriceModel(models.Model):
         return series_cost
 
 
-    def get_products_len(self, products: list[dict]):
+    def get_products_len(self, products):
         count = 0
         for product in products:
             device = product['device'].lower()
