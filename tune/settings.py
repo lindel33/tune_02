@@ -137,45 +137,45 @@ CACHES = {
 }
 
 
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
-#                         'https://tuneapple.xyz/',
-#                         'https://www.tuneapple.xyz',
-#                         'https://www.tuneapple.xyz/',
-#                         'tuneapple.xyz'
-#                        ]
-# CORS_ALLOWED_ORIGIN_REGEXES  = [
-#      r"^https://\w+\.tuneapple\.xyz$" , 
-# ]
+CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
+                        'https://tuneapple.xyz/',
+                        'https://www.tuneapple.xyz',
+                        'https://www.tuneapple.xyz/',
+                        'tuneapple.xyz'
+                       ]
+CORS_ALLOWED_ORIGIN_REGEXES  = [
+     r"^https://\w+\.tuneapple\.xyz$" , 
+]
 
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOW_METHODS = [
-#     "DELETE",
-#     "GET",
-#     "OPTIONS",
-#     "PATCH",
-#     "POST",
-#     "PUT",
-# ]
-# CORS_ALLOW_HEADERS = [
-#     "accept",
-#     "accept-encoding",
-#     "authorization",
-#     "content-type",
-#     "dnt",
-#     "origin",
-#     "user-agent",
-#     "x-csrftoken",
-#     "x-requested-with",
-# ]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
-# CORS_ALLOWED_ORIGINS  = [
-#     "http://tuneapple.xyz" ,
-#     "http://www.tuneapple.xyz" ,
-#     "https://www.tuneapple.xyz" , 
-#     "https://www.tuneapple.xyz" , 
-# ] 
+CORS_ALLOWED_ORIGINS  = [
+    "http://tuneapple.xyz" ,
+    "http://www.tuneapple.xyz" ,
+    "https://www.tuneapple.xyz" , 
+    "https://www.tuneapple.xyz" , 
+] 
 CSRF_TRUSTED_ORIGINS = [
      "http://tuneapple.xyz" , 
      "https://tuneapple.xyz" ,
@@ -189,12 +189,3 @@ CSRF_TRUSTED_ORIGINS = [
     'https://127.0.0.1:8001',
    
 ]
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-   'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
-    ),
-}
