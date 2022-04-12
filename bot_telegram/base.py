@@ -51,4 +51,4 @@ for i in links_image:
     image = Image.open(io.BytesIO(con))
     # image = Image.frombytes('RGBA', (128,128), con)
     name = i.split('/')[-1]
-    image.save("C:\\my_media\\" + name)
+    image.save("/home/TuneApple/tune/media" + name)
