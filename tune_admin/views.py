@@ -18,6 +18,9 @@ sup_callback = ['Назад к Б/У iPhone', 'Назад к Б/У iPad', 'На�
                 'Назад к Б/У AirPods', 'Назад к Б/У Watch',
                 'Назад к Б/У Устройства']
 
+path_to_media = '/home/apple/code/project1/tune/media/'
+
+
 @csrf_exempt
 def bot(request):
 
@@ -308,9 +311,9 @@ def show_model(message, extra=None):
         keyboard.keyboard = products
 
         if detail_product[0].image_3:
-            f1, f2, f3 = open('/home/TuneApple/tune/media/' + str(detail_product[0].image_1), 'rb'), \
-                     open('/home/TuneApple/tune/media/' + str(detail_product[0].image_2), 'rb'), \
-                     open('/home/TuneApple/tune/media/' + str(detail_product[0].image_3), 'rb')
+            f1, f2, f3 = open(path_to_media + str(detail_product[0].image_1), 'rb'), \
+                     open(path_to_media + str(detail_product[0].image_2), 'rb'), \
+                     open(path_to_media + str(detail_product[0].image_3), 'rb')
             f1, f2, f3 = f1.read(), f2.read(), f3.read()
             client.send_media_group(chat_id=message.chat.id, media=[
                 telebot.types.InputMediaPhoto(f1, caption=detail_product[0].base_text),
@@ -320,8 +323,8 @@ def show_model(message, extra=None):
                                 text='Хотите забронировать эту модель?',
                                 reply_markup=keyboard)
         else:
-            f1, f2 = open('/home/TuneApple/tune/media/' + str(detail_product[0].image_1), 'rb'), \
-                     open('/home/TuneApple/tune/media/' + str(detail_product[0].image_2), 'rb')
+            f1, f2 = open(path_to_media + str(detail_product[0].image_1), 'rb'), \
+                     open(path_to_media + str(detail_product[0].image_2), 'rb')
 
             f1, f2 = f1.read(), f2.read()
             client.send_media_group(chat_id=message.chat.id, media=[
