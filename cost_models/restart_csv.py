@@ -76,7 +76,7 @@ v_2 = [
 
 def get_cvs_data1():
     iphone_list = []
-    with open('/home/TuneApple/tune/cost_models/store_clear.csv', 'r', encoding='utf-8') as f:
+    with open('/home/apple/code/project1/tune/cost_models/store_clear.csv', 'r', encoding='utf-8') as f:
         data = csv.DictReader(f, delimiter=';')
         for row in data:
             iphone_list.append(row)
@@ -92,7 +92,7 @@ def new_cvs_data():
 
 
 def post_cvs1(data_new):
-    with open('/home/TuneApple/tune/cost_models/store.csv', 'w', encoding='utf-8') as f:
+    with open('/home/apple/code/project1/tune/cost_models/store.csv', 'w', encoding='utf-8') as f:
         data = csv.DictWriter(f, fieldnames=v_2, delimiter=';')
         data.writeheader()
         data.writerows(data_new)
