@@ -265,6 +265,7 @@ def support_products(message):
 dig = ['1', '2', '3', '4', '5', '6', '7', '8', '9', ]
 @client.message_handler(func=lambda message: message.text in all_products)
 @client.message_handler(func=lambda message: '⋅' in message.text)
+@client.message_handler(func=lambda message: '🔻' in message.text)
 def show_model(message, extra=None):
     tmp = message.text
     name_to_search = message.text
@@ -274,7 +275,11 @@ def show_model(message, extra=None):
             name.remove('⋅')
         if '⋅' in message.text:
             name_to_search = message.text.replace('⋅ ', '')
-
+        
+        if name[0] == '🔻':
+          name.remove('🔻')
+        if '🔻' in message.text:
+          name_to_search = message.text.replace('🔻 ', '')
         print('--', name)
         name1 = name[0] + ' ' + name[1][0]
         products = []
