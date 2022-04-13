@@ -53,7 +53,9 @@ class NewPriceModelAdmin(admin.ModelAdmin):
         post_cvs1(new_cvs_data())
 #         restart_server()
         import subprocess
-        subprocess.Popen("yc compute instance restart tunedjango")
+        bashCommand = "yc compute instance restart tunedjango"
+        process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+        output, error = process.communicate()
         return HttpResponse('Перезагрузка')
 
 
