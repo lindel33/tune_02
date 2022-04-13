@@ -8,13 +8,11 @@ from rest_framework.exceptions import PermissionDenied
 import requests
 from .models import Product, Category, SeriesCategory
 from cost_models.models import DetailModel
-<<<<<<< HEAD
-TOKEN = '5248007449:AAHtp4dcdrTiEp3M826UaYqtXnccMHogoBk'
-URL_BITRIX = 'https://im.bitrix.info/imwebhook/eh/6c529968ec581a32c38753edca1c926a164589fdse325227/'
-=======
+
+
 TOKEN = '5239855839:AAG6A81Vv1BjQr1HnGtIJHxQ1rbKSc3QBs4'
-URL_BITRIX = 'https://im.bitrix.info/imwebhook/eh/6c529968ec581a32c38753edca1c926a164589125227/'
->>>>>>> ae4771846a01866a2c655a94318fca4ce3df89a4
+URL_BITRIX = 'https://im.bitrix.info/imwebhook/eh/6c529968ec581a32c38753edca1c926a1645891257/'
+
 client = telebot.TeleBot(TOKEN, threaded=False)
 menu_support = ['📱 iPhone', '📲 iPad', '💻 MacBook',
                 '🎧 AirPods', '⌚ Watch',
