@@ -56,13 +56,13 @@ class NewPriceModelAdmin(admin.ModelAdmin):
 
 
     def full_csv(self, request, *args, **kwargs):
-        return redirect('/some/full/')
+        return redirect('/csv_check/full/')
 
     def ready_csv(self, request, *args, **kwargs):
-        return redirect('/some/ready/')
+        return redirect('/csv_check/ready/')
 
     def not_update_csv(self, request, *args, **kwargs):
-        return redirect('/some/not_update/')
+        return redirect('/csv_check/not_update/')
 
     drop_csv.short_description = "Сбросить csv к нулевым ценам"
     download_csv.short_description = "Скачать новый csv с ценами"
