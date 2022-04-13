@@ -322,8 +322,7 @@ def show_model(message, extra=None):
           products = [['🔻 ' + x] for x in get_sale()]
           if [tmp] in products:
               products.remove([tmp])
-              products.append(
-                  ['Забронировать|Узнать подробней' + '\n' + message.text + ' Арт. ' + detail_product[0].article])
+              products.append(['Забронировать|Узнать подробней' + '\n' + tmp + ' Арт. ' + detail_product[0].article])
           products.append(['⬅️Главное меню'])
           
         else:
