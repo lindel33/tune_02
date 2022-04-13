@@ -40,7 +40,7 @@ class NewPriceModelAdmin(admin.ModelAdmin):
 
     def download_csv(self, request, queryset):
         from django.http import HttpResponse
-        f = open('/home/TuneApple/tune/cost_models/store.csv', 'r')
+        f = open('/home/apple/code/project1/tune/cost_models/store.csv', 'r')
         response = HttpResponse(f, content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename=pricetilda.csv'
         return response
@@ -52,10 +52,10 @@ class NewPriceModelAdmin(admin.ModelAdmin):
 
         post_cvs1(new_cvs_data())
 #         restart_server()
-        import subprocess
-        bashCommand = "yc compute instance restart tunedjango"
-        process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-        output, error = process.communicate()
+#         import subprocess
+#         bashCommand = "yc compute instance restart tunedjango"
+#         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+#         output, error = process.communicate()
         return HttpResponse('Перезагрузка')
 
 
