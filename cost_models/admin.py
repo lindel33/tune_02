@@ -40,7 +40,7 @@ class NewPriceModelAdmin(admin.ModelAdmin):
 
     def download_csv(self, request, queryset):
         from django.http import HttpResponse
-        f = open('/home/TuneApple/tune/cost_models/store.csv', 'r')
+        f = open('/home/apple/code/project1/tune/cost_models/store.csv', 'r')
         response = HttpResponse(f, content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename=pricetilda.csv'
         return response
@@ -51,18 +51,22 @@ class NewPriceModelAdmin(admin.ModelAdmin):
         from django.http import HttpResponse
 
         post_cvs1(new_cvs_data())
-        restart_server()
+#         restart_server()
+#         import subprocess
+#         bashCommand = "yc compute instance restart tunedjango"
+#         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+#         output, error = process.communicate()
         return HttpResponse('Перезагрузка')
 
 
     def full_csv(self, request, *args, **kwargs):
-        return redirect('/some/full/')
+        return redirect('/csv_check/full/')
 
     def ready_csv(self, request, *args, **kwargs):
-        return redirect('/some/ready/')
+        return redirect('/csv_check/ready/')
 
     def not_update_csv(self, request, *args, **kwargs):
-        return redirect('/some/not_update/')
+        return redirect('/csv_check/not_update/')
 
     drop_csv.short_description = "Сбросить csv к нулевым ценам"
     download_csv.short_description = "Скачать новый csv с ценами"

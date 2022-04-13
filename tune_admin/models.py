@@ -158,6 +158,7 @@ class Product(models.Model):
                                                                                                     ('Эмиль', 'Эмиль'),
                                                                                                         ],
                                                                                                         )
+    sale = models.BooleanField('Скидка', default=False)
 
 
     class Meta:

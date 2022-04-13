@@ -1,5 +1,5 @@
-# import re
-# from pprint import pprint
+import re
+from pprint import pprint
 from django.db import models
 from price.models import Global, Iphone, Markup, Ipad
 from .service import get_product_list
@@ -203,8 +203,10 @@ class NewPriceModel(models.Model):
     def get_memory(self, memory):
         new_memory = memory.replace(' ', '')
         prefix_memory = 'гб|gb|тр|tb'
+#         if re.findall(prefix_memory, new_memory.lower()):
         new_memory = re.sub(prefix_memory, '', new_memory.lower())
         new_memory = new_memory.replace(' ', '')
+            
         return new_memory
 
     def get_series(self, series):

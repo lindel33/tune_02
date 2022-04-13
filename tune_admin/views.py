@@ -8,8 +8,16 @@ from rest_framework.exceptions import PermissionDenied
 import requests
 from .models import Product, Category, SeriesCategory
 from cost_models.models import DetailModel
-TOKEN = '5248007449:AAHtp4dcdrTiEp3M826UaYqtXnccMHogoBk'
+
+
+TOKEN = '5239855839:AAG6A81Vv1BjQr1HnGtIJHxQ1rbKSc3QBs4'
+<<<<<<< HEAD
+URL_BITRIX = 'https://im.bitrix.info/imwebhook/eh/6c529968ec581a32c38753edca1c926a1645891257/'
+
+=======
+
 URL_BITRIX = 'https://im.bitrix.info/imwebhook/eh/6c529968ec581a32c38753edca1c926a164589125227/'
+>>>>>>> 7cfad682a4aefd882fc86159539124b16ef59a02
 client = telebot.TeleBot(TOKEN, threaded=False)
 menu_support = ['📱 iPhone', '📲 iPad', '💻 MacBook',
                 '🎧 AirPods', '⌚ Watch',
@@ -122,6 +130,18 @@ def get_max_min_price(cost):
         if i[0] <= cost <= i[1]:
             return [i[0], i[1]]
 
+def get_sale():
+    result = Product.objects.values('name').\
+        filter(sell=False).\
+        filter(booking=False).\
+        filter(moderation=True).\
+        filter(sale=True)
+    list_all = []
+    for i in result:
+        list_all.append(i['name'])
+    return list_all
+  
+  
 current_category = list(set([x[1] for x in get_current_product()]))
 all_products = [x for x in get_all_products()]
 current_product = get_current_product()
@@ -136,7 +156,7 @@ max_products = [x for x in max_all_products()]
 @client.message_handler(func=lambda message: message.text == '⬅️Главное меню')
 @client.message_handler(commands=['start'])
 def start_message(message, text='Что хотите найти?'):
-    start_category = [['Б/У Устройства'],['Новые Устройства'], ['Trade-in'], ['Мой бюджет'], ['Связаться с менеджером']]
+    start_category = [['💥Скидки💥'], ['Б/У Устройства'],['Новые Устройства'], ['Trade-in'], ['Мой бюджет'], ['Связаться с менеджером']]
     keyboard_category = telebot.types.ReplyKeyboardMarkup(True, True)
     keyboard_category.keyboard = start_category
     client.send_message(chat_id=message.chat.id,
@@ -253,6 +273,7 @@ def support_products(message):
 dig = ['1', '2', '3', '4', '5', '6', '7', '8', '9', ]
 @client.message_handler(func=lambda message: message.text in all_products)
 @client.message_handler(func=lambda message: '⋅' in message.text)
+@client.message_handler(func=lambda message: message.text.split()[0] == '🔻')
 def show_model(message, extra=None):
     tmp = message.text
     name_to_search = message.text
@@ -262,7 +283,11 @@ def show_model(message, extra=None):
             name.remove('⋅')
         if '⋅' in message.text:
             name_to_search = message.text.replace('⋅ ', '')
-
+        
+        if name[0] == '🔻':
+          name.remove('🔻')
+        if '🔻' in message.text:
+          name_to_search = message.text.replace('🔻 ', '')
         print('--', name)
         name1 = name[0] + ' ' + name[1][0]
         products = []
@@ -300,6 +325,14 @@ def show_model(message, extra=None):
                 products.remove([tmp])
                 products.append(['Забронировать|Узнать подробней' + '\n' + message.text + ' Арт. '+detail_product[0].article])
             products.append(['⬅️Другой бюджет'])
+        
+        elif '🔻' in tmp:
+          products = [['🔻 ' + x] for x in get_sale()]
+          if [tmp] in products:
+              products.remove([tmp])
+              products.append(['Забронировать|Узнать подробней' + '\n' + tmp + ' Арт. ' + detail_product[0].article])
+          products.append(['⬅️Главное меню'])
+          
         else:
             products = [[x] for x in products]
             products.append(['Забронировать|Узнать подробней' + '\n' + message.text + ' Арт. '+detail_product[0].article])
@@ -490,6 +523,18 @@ def my_budget_show(message):
         except:
             pass
 
+@client.message_handler(commands=['sale'])
+@client.message_handler(func=lambda message: message.text == '💥Скидки💥')
+def tradein_model(message):
+    sale = get_sale()
+    result = [['🔻 ' + x] for x in sorted(sale)]
+    result.append(['⬅️Главное меню'])
+    keyboard_products = telebot.types.ReplyKeyboardMarkup(True, True)
+    keyboard_products.keyboard = result
+    client.send_message(chat_id=message.chat.id,
+                        text='Вот все скидки',
+                        reply_markup=keyboard_products)
+          
 @client.message_handler(commands=['ti'])
 @client.message_handler(func=lambda message: message.text == 'Trade-in')
 def tradein_model(message):
@@ -517,7 +562,7 @@ def bitrix_client(message):
 
                 requests.post(URL_BITRIX, json=ts)
 
-                if message.text.lower().split()[0] == 'забронировать|узнать' or \
+                if 'забронировать|узнать' in message.text.lower() or \
                         message.text.lower() == 'купить новое устройство':
                     start_message(message, text='Пожалуйста дождитесь ответа менеджера,'
                     ' он поможет Вам забронировать устройство или расскажет о нем более подробно 👩🏻‍💻')
