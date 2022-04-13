@@ -265,7 +265,7 @@ def support_products(message):
 dig = ['1', '2', '3', '4', '5', '6', '7', '8', '9', ]
 @client.message_handler(func=lambda message: message.text in all_products)
 @client.message_handler(func=lambda message: '⋅' in message.text)
-@client.message_handler(func=lambda message: '🔻' in message.text)
+@client.message_handler(func=lambda message: message.text.split()[0] == '🔻')
 def show_model(message, extra=None):
     tmp = message.text
     name_to_search = message.text
