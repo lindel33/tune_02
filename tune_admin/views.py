@@ -515,8 +515,8 @@ def my_budget_show(message):
 @client.message_handler(func=lambda message: message.text == '💥Скидки💥')
 def tradein_model(message):
     sale = get_sale()
-    result = [['🔻 ' + x] for x in sale]
-
+    result = [['🔻 ' + x] for x in sorted(sale)]
+    result.append(['⬅️Главное меню'])
     keyboard_products = telebot.types.ReplyKeyboardMarkup(True, True)
     keyboard_products.keyboard = result
     client.send_message(chat_id=message.chat.id,
