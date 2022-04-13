@@ -51,7 +51,9 @@ class NewPriceModelAdmin(admin.ModelAdmin):
         from django.http import HttpResponse
 
         post_cvs1(new_cvs_data())
-        restart_server()
+#         restart_server()
+        import subprocess
+        subprocess.Popen("yc compute instance restart tunedjango")
         return HttpResponse('Перезагрузка')
 
 
