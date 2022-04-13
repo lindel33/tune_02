@@ -203,8 +203,10 @@ class NewPriceModel(models.Model):
     def get_memory(self, memory):
         new_memory = memory.replace(' ', '')
         prefix_memory = 'гб|gb|тр|tb'
-        new_memory = re.sub(prefix_memory, '', new_memory.lower())
-        new_memory = new_memory.replace(' ', '')
+        if re.findall(prefix_memory, new_memory.lower()):
+            new_memory = re.sub(prefix_memory, '', new_memory.lower())
+            new_memory = new_memory.replace(' ', '')
+            
         return new_memory
 
     def get_series(self, series):
