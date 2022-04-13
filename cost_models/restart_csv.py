@@ -99,10 +99,11 @@ def post_cvs1(data_new):
 
 
 def restart_server():
-    response = requests.post(
-        'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain_name}/reload/'.format(
-            username=username,
-            domain_name=domain_name
-        ),
-        headers={'Authorization': 'Token {token}'.format(token=token)}
-    )
+    pass
+#     response = requests.post(
+#         'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain_name}/reload/'.format(
+#             username=username,
+#             domain_name=domain_name
+#         ),
+#         headers={'Authorization': 'Token {token}'.format(token=token)}
+#     )
