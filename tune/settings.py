@@ -33,6 +33,9 @@ INSTALLED_APPS = [
     'price',
     'provider',
     'cost_models',
+    'trade_in',
+    'faq',
+    'trade_id',
 #     'corsheaders',
 ]
 
@@ -81,12 +84,21 @@ WSGI_APPLICATION = 'tune.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'TuneApple$TuneProd',
+#         'USER': 'root',
+#         'PASSWORD': 'I1QEvAR503',
+#         'OPTIONS': {'charset': 'utf8mb4', },
+#         }
+#     }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'TuneApple$TuneProd',
-        'USER': 'TuneApple',
-        'PASSWORD': 'tune',
+        'NAME': 'tuneapple',
+        'USER': 'root',
+        'PASSWORD': 'I1QEvAR503',
         'OPTIONS': {'charset': 'utf8mb4', },
         }
     }
@@ -120,7 +132,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 3000
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -137,53 +149,53 @@ CACHES = {
 }
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://tuneapple.xyz/',
-    'https://tuneapple.xyz',
-    'https://www.tuneapple.xyz/',
-    'https://www.tuneapple.xyz/',
-    'tuneapple.xyz/',
-    'tuneapple.xyz'
-]
-
-CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
-                        'https://tuneapple.xyz/',
-                        'https://www.tuneapple.xyz',
-                        'https://www.tuneapple.xyz/',
-                        'tuneapple.xyz'
-                        'https://tuneapple.xyz/',
-                       ]
-CORS_ALLOWED_ORIGIN_REGEXES  = [
-     r"^https://\w+\.tuneapple\.xyz$" , 
-]
-
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
-
-CORS_ALLOWED_ORIGINS  = [
-    "http://tuneapple.xyz" ,
-    "http://www.tuneapple.xyz" ,
-    "https://www.tuneapple.xyz" , 
-    "https://www.tuneapple.xyz" ,
-    'https://tuneapple.xyz/panel/homelogin/?next=/panel/home',
-    'https://tuneapple.xyz/',
-] 
-
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://tuneapple.xyz/',
+#     'https://tuneapple.xyz',
+#     'https://www.tuneapple.xyz/',
+#     'https://www.tuneapple.xyz/',
+#     'tuneapple.xyz/',
+#     'tuneapple.xyz'
+# ]
+#
+# CORS_ALLOWED_ORIGINS = ['https://tuneapple.xyz',
+#                         'https://tuneapple.xyz/',
+#                         'https://www.tuneapple.xyz',
+#                         'https://www.tuneapple.xyz/',
+#                         'tuneapple.xyz'
+#                         'https://tuneapple.xyz/',
+#                        ]
+# CORS_ALLOWED_ORIGIN_REGEXES  = [
+#      r"^https://\w+\.tuneapple\.xyz$" ,
+# ]
+#
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
+# CORS_ALLOW_HEADERS = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+# ]
+#
+# CORS_ALLOWED_ORIGINS  = [
+#     "http://tuneapple.xyz" ,
+#     "http://www.tuneapple.xyz" ,
+#     "https://www.tuneapple.xyz" ,
+#     "https://www.tuneapple.xyz" ,
+#     'https://tuneapple.xyz/panel/homelogin/?next=/panel/home',
+#     'https://tuneapple.xyz/',
+# ]
+#

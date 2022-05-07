@@ -1,12 +1,13 @@
 import datetime
+
 from django.db import models
 
-from tune_admin.models import Category, SeriesCategory, get_deadline, Product, states, choices_kit, choices_guaranty, choices_smile
+from tune_admin.models import Category, SeriesCategory, get_deadline, Product, states, choices_kit, choices_guaranty, \
+    choices_smile, GuarantyModel, KitModel, StateModel
 from tune_admin.text_default import text_default
 
 today = datetime.date.today()
 tomorrow = today + datetime.timedelta(days=4)
-
 default_guaranty = 'Гарантия от магазина на проверку 3 месяца !✅'
 default_text = text_default
 
@@ -42,15 +43,15 @@ class ProviderProduct(models.Model):
     tests = models.BooleanField('Ростест?', default=False)
     article = models.CharField('Код товара', max_length=15, null=False,
                                help_text='Пример: 20X100ZT')
-    state = models.TextField('Состояние', choices=states, null=False,
-                             help_text='Выбор сгенерирует шаблон')
+    state = models.ForeignKey(StateModel, on_delete=models.CASCADE, verbose_name='Состояние')
     state_akb = models.SmallIntegerField('Состояние АКБ', default=0,
                                          help_text='Оставить в поле 0, если по АКБ нет информации')
     works = models.TextField('Произведенные работы', null=True, blank=True,
                              help_text='Оставить поле пустым, если не нужно')
     kit = models.CharField('Комплект', choices=choices_kit, max_length=150, null=False)
-    guaranty = models.CharField('Гарантия', choices=choices_guaranty,
-                                max_length=255, null=True, blank=True, default=default_guaranty)
+
+    guaranty = models.ForeignKey(GuarantyModel, on_delete=models.CASCADE, verbose_name='Гарантия')
+
     custom_guaranty = models.DateField('Своя гарантия', null=True, blank=True)
 
     base_text = models.TextField('Нижняя подпись к посту', null=False, default=default_text)
@@ -62,7 +63,8 @@ class ProviderProduct(models.Model):
     series = models.ForeignKey(SeriesCategory, on_delete=models.CASCADE,
                                verbose_name='Серия', null=True, blank=True)
 
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, verbose_name='Автор', )
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, verbose_name='Автор', default=1)
+
     count = models.SmallIntegerField('Счетчик сохранений', default=0)
     up_price = models.BooleanField('Цена поднята?', default=False)
 
@@ -72,12 +74,16 @@ class ProviderProduct(models.Model):
         ('Эмиль', 'Эмиль'),
     ],
                                        )
+    device_provider = models.BooleanField(default=True)
+
 
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
 
     def save(self, extra=None, *args, **kwargs):
+        if self.sell:
+            Product.objects.filter(article=self.article).update(sell=True)
         self.base_text = text_default
         price_list = []
         for element in str(self.price):
@@ -86,7 +92,6 @@ class ProviderProduct(models.Model):
         last_2 = price_list.pop(-1)
         last_3 = price_list.pop(-1)
         result_price = "".join(price_list) + '.' + last_3 + last_2 + last_1
-
         self.count = int(self.count) + 1
 
         if self.count == 1:
@@ -120,39 +125,45 @@ class ProviderProduct(models.Model):
         else:
             self.base_text = str(self.base_text) + '\n' + str(self.guaranty) + '\n'
         self.base_text = str(self.base_text) + default_text
-        Product.objects.create(
-            image_1=self.image_1,
-            image_2=self.image_2,
-            image_3=self.image_3,
-            sell=False,
-            booking=False,
-            moderation=False,
-            price=self.price,
-            smile=self.smile,
-            name=self.name,
-            name_tmp=self.name_tmp,
-            tests=self.tests,
-            article=self.article,
-            state=self.state,
-            state_akb=self.state_akb,
-            works=self.works,
-            kit=self.kit,
-            guaranty=self.guaranty,
-            custom_guaranty=self.custom_guaranty,
 
-            base_text=self.base_text,
-            day_created=self.day_created,
-            day_next_publish=self.day_next_publish,
+        if self.device_provider:
+            Product.objects.create(
+                image_1=self.image_1,
+                image_2=self.image_2,
+                image_3=self.image_3,
+                sell=False,
+                booking=False,
+                moderation=False,
+                price=self.price,
+                smile=self.smile,
+                name=self.name,
+                name_tmp=self.name_tmp,
+                tests=self.tests,
+                article=self.article,
+                state=self.state,
+                state_akb=self.state_akb,
+                works=self.works,
+                kit=self.kit,
+                guaranty=self.guaranty,
+                custom_guaranty=self.custom_guaranty,
 
-            category=self.category,
-            series=self.series,
+                base_text=self.base_text,
+                day_created=self.day_created,
+                day_next_publish=self.day_next_publish,
 
-            author=self.author,
-            count=0,
-            up_price=self.up_price,
+                category=self.category,
+                series=self.series,
 
-            provider_device=self.provider_device,
-        )
+                author=self.author,
+                count=1,
+                up_price=self.up_price,
+
+                provider_device=self.provider_device,
+                device_provider=self.device_provider,
+
+            )
+            self.device_provider = False
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

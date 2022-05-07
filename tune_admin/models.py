@@ -6,6 +6,8 @@ from .text_default import text_default
 from .new_post import send_post
 import datetime
 
+
+
 today = datetime.date.today()
 tomorrow = today + datetime.timedelta(days=4)
 state_1 = 'Новое устройство, вскрыта упаковка. Не активировано.'
@@ -19,8 +21,16 @@ states = [(state_1, 'Новый'),
           (state_4, 'Отличное'),
           (state_5, 'Хорошее ')
           ]
+class StateModel(models.Model):
+    state = models.CharField('Текст', max_length=255)
 
-kit_1 ='Только устройство'
+    class Meta:
+        verbose_name = 'Состояние'
+        verbose_name_plural = 'Состояния'
+
+    def __str__(self):
+        return self.state
+kit_1 = 'Только устройство'
 kit_2 = 'Коробка'
 kit_3 = 'Коробка, кабель Lightning — USB-C для быстрой зарядки'
 kit_4 = 'Кабель Lightning — USB-C для быстрой зарядки'
@@ -42,6 +52,19 @@ choices_kit = [
     (kit_9, kit_9),
     (kit_full, kit_full),
 ]
+
+
+class KitModel(models.Model):
+    kit = models.CharField('Текст', max_length=255)
+
+    class Meta:
+        verbose_name = 'Комплект'
+        verbose_name_plural = 'Комплекты'
+
+    def __str__(self):
+        return self.kit
+
+
 choices_smile = [
     ('🔥', '🔥'),
     ('💥', '💥'),
@@ -58,6 +81,27 @@ choices_guaranty = [
     (guaranty_2, guaranty_2),
     (guaranty_3, guaranty_3),
 ]
+
+class GuarantyModel(models.Model):
+    guaranty = models.CharField('Текст', max_length=255)
+    guaranty_id = models.CharField('Текст', max_length=255)
+
+    class Meta:
+        verbose_name = 'Гарантии'
+        verbose_name_plural = 'Гарантии'
+
+    def __str__(self):
+        return self.guaranty
+
+
+
+
+
+
+
+
+
+
 
 tests_1 = 'Ростест🇷🇺'
 tests_2 = 'Не Ростест'
@@ -128,20 +172,19 @@ class Product(models.Model):
     tests = models.BooleanField('Ростест?', default=False)
     article = models.CharField('Код товара', max_length=15, null=False,
                                help_text='Пример: 20X100ZT')
-    state = models.TextField('Состояние', choices=states, null=False,
-                             help_text='Выбор сгенерирует шаблон')
+    state = models.ForeignKey(StateModel, on_delete=models.CASCADE, verbose_name='Состояние')
+
+    guaranty = models.ForeignKey(GuarantyModel, on_delete=models.CASCADE, verbose_name='Гарантия')
     state_akb = models.SmallIntegerField('Состояние АКБ', default=0,
                                          help_text='Оставить в поле 0, если по АКБ нет информации')
     works = models.TextField('Произведенные работы', null=True, blank=True,
                              help_text='Оставить поле пустым, если не нужно')
-    kit = models.CharField('Комплект', choices=choices_kit, max_length=150, null=False)
-    guaranty = models.CharField('Гарантия', choices=choices_guaranty,
-                                max_length=255, null=True,blank=True, default=default_guaranty)
+
+    kit = models.ForeignKey(KitModel, on_delete=models.CASCADE, verbose_name='Комплект', null=True, blank=True)
     custom_guaranty = models.DateField('Своя гарантия', null=True, blank=True)
 
     base_text = models.TextField('Нижняя подпись к посту', null=False, default=default_text)
     day_created = models.DateTimeField('Дата создания', auto_now_add=True)
-    day_next_publish = models.DateTimeField('Дата следующего поста', default=get_deadline)
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  verbose_name='Модель', null=True, blank=True)
@@ -152,14 +195,15 @@ class Product(models.Model):
     count = models.SmallIntegerField('Счетчик сохранений', default=0)
     up_price = models.BooleanField('Цена поднята?', default=False)
 
-    provider_device = models.CharField('Поставщик', max_length=50,default='Устройсво клиента', choices=[
+    provider_device = models.CharField('Поставщик', max_length=50, default='Устройсво клиента', choices=[
                                                                                                     ('Устройсво клиента', 'Устройсво клиента'),
                                                                                                     ('Илья Савичев', 'Илья Савичев'),
                                                                                                     ('Эмиль', 'Эмиль'),
                                                                                                         ],
                                                                                                         )
     sale = models.BooleanField('Скидка', default=False)
-
+    device_provider = models.BooleanField('Устройство поставщика', default=False)
+    www = models.BooleanField('Первичное SMT', default=True)
 
     class Meta:
         verbose_name = 'Пост'
@@ -218,19 +262,17 @@ class Product(models.Model):
             self.name_tmp = str(self.name)
 
         if self.tests:
-            self.name = str(self.name_tmp) + ' '+ 'Ростест🇷🇺'
+            self.name = str(self.name_tmp) + ' ' + 'Ростест🇷🇺'
         else:
             self.name = str(self.name_tmp)
 
-        self.name = str(self.name)  + ' - ' + str(result_price)
+        self.name = str(self.name) + ' - ' + str(result_price)
 
         if self.smile:
             self.name = str(self.name) + str(self.smile)
 
-
-        self.base_text = str(self.name) + '\n\n' + 'Код товара: ' + str(self.article) + '\n\n'\
-                                 + str(self.state) + '\n'\
-
+        self.base_text = str(self.name) + '\n\n' + 'Код товара: ' + str(self.article) + '\n\n' \
+                         + str(self.state) + '\n'
         self.base_text = str(self.base_text) + '\nКомплект: ' + str(self.kit) + '\n'
 
         if self.state_akb != 0:
@@ -240,33 +282,29 @@ class Product(models.Model):
             self.base_text = str(self.base_text) + '\n' + str(self.works) + '\n'
 
         if not self.guaranty:
-            castom_guarnt = datetime.datetime.strptime(str(self.custom_guaranty),'%Y-%m-%d').strftime('%d-%m-%Y')
-            self.base_text = str(self.base_text) + '\nОфициальная гарантия Apple до '\
+            castom_guarnt = datetime.datetime.strptime(str(self.custom_guaranty), '%Y-%m-%d').strftime('%d-%m-%Y')
+            self.base_text = str(self.base_text) + '\nОфициальная гарантия Apple до ' \
                              + str(castom_guarnt) + '\n'
         else:
             self.base_text = str(self.base_text) + '\n' + str(self.guaranty) + '\n'
         self.base_text = str(self.base_text) + default_text
 
-
+        tmp_di = self.device_provider
+        self.device_provider = False
+        # if self.www == True:
+        #   BookingProduct.objects.create(product_pka=self,
+        #                                  booking_flag=self.booking,
+        #                                   sell_flag=self.sell,)
+        # self.www = False
         super().save(*args, **kwargs)
 
-        # if not self.sell:
-        #     try:
-        #         send_post(media = ['/home/TuneApple/tune/' + self.image_1.url,
-        #                         '/home/TuneApple/tune/' + self.image_2.url,
-        #                         '/home/TuneApple/tune/' + self.image_3.url,
-        #                         ], caption = self.base_text)
-        #     except:
-        #         pass
-        # if extra is None:
-        #     BookingProduct.objects.create(product_pka=self,
-        #                                   booking_flag=False,
-        #                                   sell_flag=False,)
-        if self.count == 1:
+        if self.count == 1 or tmp_di:
             BookingProduct.objects.create(product_pka=self,
                                           booking_flag=False,
-                                          sell_flag=False,)
+                                          sell_flag=False, )
 
+        # from .views import update_products
+        # update_products()  # Обновляем товары в боте
 
     def __str__(self):
         return self.name
@@ -284,7 +322,6 @@ class BookingProduct(models.Model):
         verbose_name = 'Бронь'
         verbose_name_plural = 'Бронь'
 
-
     def save(self, *args, **kwargs):
         Product.objects.filter(id=self.product_pka.id).update(booking=self.booking_flag)
         Product.objects.filter(id=self.product_pka.id).update(sell=self.sell_flag)
@@ -293,7 +330,10 @@ class BookingProduct(models.Model):
             self.name_user = ' '
 
         super().save(*args, **kwargs)
+        # from .views import update_products
+        # update_products()  # Обновляем товары в боте
 
     def __str__(self):
         return str(self.product_pka)
+
 

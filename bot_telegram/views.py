@@ -1,51 +1,51 @@
-# import time
+import time
 
-# import MySQLdb
-# import telebot
-# import requests
-# from django.views.decorators.csrf import csrf_exempt
-# from django.core.exceptions import PermissionDenied
-# from django.http import HttpResponse
-# TOKEN = '5239855839:AAGpK1VN7Lr2LDkq0WRC4onTLbYTWyrcc3g'
-# URL_BITRIX = 'https://im.bitrix.info/imwebhook/eh/da97163b8abb1a6488ea319e345377da1645036172/'
-# client = telebot.TeleBot(TOKEN, threaded=False)
-# # client.delete_webhook()
+import MySQLdb
+import telebot
+import requests
+from django.views.decorators.csrf import csrf_exempt
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
+TOKEN = '5239855839:AAGpK1VN7Lr2LDkq0WRC4onTLbYTWyrcc3g'
+URL_BITRIX = 'https://im.bitrix.info/imwebhook/eh/da97163b8abb1a6488ea319e345377da1645036172/'
+client = telebot.TeleBot(TOKEN, threaded=False)
+# client.delete_webhook()
 
 
 
-# menu_support = ['📱 iPhone', '📲 iPad', '💻 MacBook',
-#                 '🎧 AirPods', '⌚ Watch',
-#                 '⌨ Устройства', '⬅️Главное меню']
+menu_support = ['📱 iPhone', '📲 iPad', '💻 MacBook',
+                '🎧 AirPods', '⌚ Watch',
+                '⌨ Устройства', '⬅️Главное меню']
 
-# sup_callback = ['Назад к Б/У iPhone', 'Назад к Б/У iPad', 'Назад к Б/У MacBook',
-#                 'Назад к Б/У AirPods', 'Назад к Б/У Watch',
-#                 'Назад к Б/У Устройства']
+sup_callback = ['Назад к Б/У iPhone', 'Назад к Б/У iPad', 'Назад к Б/У MacBook',
+                'Назад к Б/У AirPods', 'Назад к Б/У Watch',
+                'Назад к Б/У Устройства']
 
-# connect = MySQLdb.connect('TuneApple.mysql.pythonanywhere-services.com', 'TuneApple', 'I1QEvAR503', 'TuneApple$TuneProd')
+connect = MySQLdb.connect('TuneApple.mysql.pythonanywhere-services.com', 'TuneApple', 'I1QEvAR503', 'TuneApple$TuneProd')
 
-# cursor = connect.cursor()
-# @csrf_exempt
-# def bot(request):
+cursor = connect.cursor()
+@csrf_exempt
+def bot(request):
 
-#     if request.META['CONTENT_TYPE'] == 'application/json':
-#         try:
+    if request.META['CONTENT_TYPE'] == 'application/json':
+        try:
 
-#             json_data = request.body.decode('utf-8')
-#             update = telebot.types.Update.de_json(json_data)
-#             client.process_new_updates([update])
-#             print('-----------------------4')
-#             return HttpResponse({'200': 'ok'})
+            json_data = request.body.decode('utf-8')
+            update = telebot.types.Update.de_json(json_data)
+            client.process_new_updates([update])
+            print('-----------------------4')
+            return HttpResponse({'200': 'ok'})
 
-#         except:
+        except:
 
-#             json_data = request.body.decode('utf-8')
-#             update = telebot.types.Update.de_json(json_data)
-#             client.process_new_updates([update])
-#             print('+++++++++++++++++++++++4')
-#             return HttpResponse({'200': 'ok'})
+            json_data = request.body.decode('utf-8')
+            update = telebot.types.Update.de_json(json_data)
+            client.process_new_updates([update])
+            print('+++++++++++++++++++++++4')
+            return HttpResponse({'200': 'ok'})
 
-#     else:
-#         raise PermissionDenied
+    else:
+        raise PermissionDenied
 
 
 # def get_category():

@@ -130,3 +130,19 @@ class SpecialCharacter(models.Model):
 
     def __str__(self):
         return 'Вариация'
+# reg_name = models.TextField('Регулярные выражения замены',
+#                              help_text='AirPods 2019=AirPods 2,AirPods ...')
+
+
+class AirPods(models.Model):
+    full_names = models.TextField('Полные названия', help_text='AirPods 2, AirPods Pro')
+
+    class Meta:
+        verbose_name = 'AirPods'
+        verbose_name_plural = 'AirPods'
+
+    def __str__(self):
+        return 'AirPods'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
